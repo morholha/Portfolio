@@ -1,0 +1,55 @@
+/* Find all movies with first letter L */
+SELECT *
+FROM movie
+WHERE title LIKE 'L%';
+
+/* Find all movies with letter L */
+SELECT *
+FROM movie
+WHERE title LIKE '%L%';
+
+/* Find all movies with 2 letters L */
+SELECT *
+FROM movie
+WHERE title LIKE '%L%L%';
+
+/* Find all movies with letter A */
+SELECT *
+FROM movie
+WHERE title LIKE '%A%';
+
+/* Find all movies with letter A on the second stage */
+SELECT *
+FROM movie
+WHERE title LIKE '_A%';
+
+/* Find all movies with 5 letters with letter A on the forth stage */
+SELECT *
+FROM movie
+WHERE title LIKE '_ _ _A_';
+
+/* Display the first name, last name, and date of birth of students whose first name begins with 'A' */
+SELECT first_name, last_name, birth_date
+FROM pupil
+WHERE first_name LIKE 'A%';
+
+/* Display all information about students whose names consist of five letters */
+SELECT *
+FROM pupil
+WHERE first_name LIKE '_____';
+
+/* Find the first and last names of employees whose surnames end in the letter 'v' */
+SELECT first_name, last_name
+FROM staff
+WHERE last_name LIKE '%v';
+
+/* Display all information about items that contain the letter 'o' two or more times */
+SELECT *
+FROM subject
+WHERE name LIKE '%o%o%';
+
+/* Display all information about employees who are still working and whose names begin with the letter 'I' */
+SELECT *
+FROM staff
+WHERE date_of_dismissal IS NULL AND first_name LIKE 'I%';
+

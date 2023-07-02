@@ -1,0 +1,9 @@
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER, ID_CUSTOMER, AMOUNT);
+
+Show the order id, product name, amount of the product and a sum that should be paid for the order.
+
+
+SELECT ID, PRODUCT_NAME, AMOUNT, PRODUCT_PRICE * AMOUNT AS TOTAL_COST
+FROM ORDERS;

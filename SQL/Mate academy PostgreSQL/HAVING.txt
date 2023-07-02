@@ -1,0 +1,75 @@
+SELECT column_names
+FROM table_name
+WHERE condition
+GROUP BY column_names
+HAVING condition;
+------------------------------
+Example
+SELECT color, COUNT(*)
+FROM movie
+GROUP BY color
+HAVING COUNT(*) >=5;
+------------------------------
+
+
+/* Find the smallest area for each type of shape except triangles. If the minimum area is less than 6, do not print the result. */
+
+SELECT type, MIN(area) AS min_area
+FROM shape
+WHERE NOT type = 'triangle'
+GROUP BY type
+HAVING MIN(area) >=6;
+
+
+/* Print the name of the country and the amount of money spent on filming in 2017-2020 inclusive. Print the information if the total amount spent on filming is more than 150000.*/
+
+SELECT release_country, SUM(budget)
+FROM movie
+WHERE year BETWEEN 2017 AND 2020
+GROUP BY release_country
+HAVING SUM(budget) > 150000;
+
+
+/* Find the number of buyers from each country only if there are 2 or more buyers. The result should be represented as: country_name and number_of_clients. Display the number of customers in descending order. In case of the same number of customers, sort the country names in alphabetical order. */
+
+SELECT countries.name AS country_name, COUNT(clients.id) AS number_of_clients
+FROM clients
+INNER JOIN countries
+ON clients.country_id = countries.id
+GROUP BY countries.name
+HAVING COUNT(clients.id) >= 2
+ORDER BY number_of_clients DESC, countries_name;
+
+
+/*
+Find the average grade point average for each subject for Eugen Tsven. The result should be printed only if the average grade point average is 10 or more.
+The result should contain columns:
+subject - subject;
+average_mark - the average mark for each subject.
+*/
+
+
+SELECT subject, AVG(mark) AS average_mark
+FROM scoreboard
+INNER JOIN pupil
+ON scoreboard.pupil_id = pupil.id
+WHERE first_name = 'Eugen' AND last_name = 'Tsven'
+GROUP BY subject
+HAVING AVG(mark) >= 10;
+
+
+/* Find the categories and prices of the most expensive products from these categories, if they include 3 or more different products. Sort the result by price in ascending order.
+
+The result should contain columns:
+
+category_name - the name of the category;
+max_price - the price of the most expensive product for each category. */
+
+
+SELECT category.name AS category_name, MAX(price) AS max_price
+FROM category
+INNER JOIN product
+ON category.id = product.category_id
+GROUP BY category_name
+HAVING COUNT(product.id) >= 3
+ORDER BY max_price;

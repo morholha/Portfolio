@@ -1,0 +1,21 @@
+/* Find all movies which are not started with T letter and wasn't released between 2017 and 2019 years */
+SELECT *
+FROM movie
+WHERE title NOT LIKE 'T%' AND year NOT BETWEEN 2017 AND 2019;
+
+/* Find all movies which country is not USA, SPAIN, China and not released between 2017 and 2019 years */
+SELECT *
+FROM movie
+WHERE release_country NOT IN ('USA, 'Spain', 'Ukraine') AND year NOT BETWEEN 2017 AND 2019;
+
+/* Display all information about books that do not begin with the letter 'F' */
+SELECT *
+FROM book
+WHERE title NOT LIKE 'F%';
+
+/* Display the first name, last name, date of birth, and city of students, except for those born between '2005-08-28' and '2007-06-12' inclusive */
+SELECT first_name, last_name, birth_date, city
+FROM pupil
+WHERE birth_date NOT BETWEEN '2005-08-28' AND '2007-06-12';
+
+

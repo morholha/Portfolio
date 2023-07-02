@@ -1,0 +1,39 @@
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER DATE, ID_CUSTOMER, AMOUNT);
+
+
+
+1. Add a new customer with first and last names Volodumyr  Ilnytskyi  and with ID=8.
+
+2. Add a new customer with first and last names  Roman Petryk  and with ID=9.
+
+INSERT INTO CUSTOMERS (ID, FIRSTNAME, LASTNAME, ADDRESS) 
+VALUES (8, 'Volodumyr', 'Ilnytskyi', 'Some Address');
+
+INSERT INTO CUSTOMERS (ID, FIRSTNAME, LASTNAME, ADDRESS) 
+VALUES (9, 'Roman', 'Petryk', 'Some Address');
+_________________________________________________________________________________________________
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER DATE, ID_CUSTOMER, AMOUNT);
+
+
+
+
+1.      Reflect in the DB the order with ID=15 of the customer with ID=8 for 2 products named 'Dell Inspiron 3542', price 6750, order date 21 December 2016.
+
+2.      Reflect in the DB the order with ID=16 of the customer with first and last names  Roman Petryk for 3 products named 'Asus X553MA', with price 6300, order date 22 December 2016.
+
+-- Reflect order with ID=15 for customer with ID=8
+INSERT INTO ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER, ID_CUSTOMER, AMOUNT)
+VALUES (15, 'Dell Inspiron 3542', 6750, '2016-12-21', 8, 2);
+
+-- Reflect order with ID=16 for customer with first and last names Roman Petryk
+INSERT INTO ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER, ID_CUSTOMER, AMOUNT)
+SELECT 16, 'Asus X553MA', 6300, '2016-12-22', ID, 3
+FROM CUSTOMERS 
+WHERE FIRSTNAME='Roman' AND LASTNAME='Petryk';
+
+
+________________________________________________________

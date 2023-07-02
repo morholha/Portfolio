@@ -1,0 +1,74 @@
+SELECT MIN(column_name)
+FROM table;
+--------------------------
+SELECT MAX(column_name)
+FROM table;
+--------------------------
+
+/* show min sum for movie */
+
+SELECT MIN(budget)
+FROM movie;
+
+
+/* show max sum for movie */
+
+SELECT MAX(budget)
+FROM movie;
+
+
+/* show year with oldest movie */
+
+SELECT MIN(date_release)
+FROM movie;
+
+
+/* show movie with min title */
+
+SELECT MIN(title)
+FROM movie;
+
+
+/* show movie with max title */
+
+SELECT MAX(title)
+FROM movie;
+
+
+/* Display the calories of the lowest-calorie dish. For the resulting column, create an alias - calories. */
+
+SELECT MIN(calories) AS calories
+FROM dish;
+
+
+/* Find the smallest number of pages among the books. Create an alias for the resulting column - number_of_pages. */
+
+SELECT MIN(number_of_pages) AS number_of_pages
+FROM book;
+
+
+/* Find the date when the first employee was hired. Create an alias for the resulting column - hiring_date. */
+
+SELECT MIN( date_of_hiring) AS hiring_date
+FROM staff;
+
+
+/* Find the date of birth of the youngest employee who is no longer working. Create an alias for the resulting column - birth_date. */
+
+SELECT MAX(birth_date) AS birth_date
+FROM staff
+WHERE date_of_dismissal IS NOT NULL;
+
+
+/* Find the highest salary among employees who:
+
+are still working;
+have the position of teacher.
+For the resulting column, create an alias - max_salary. */
+
+SELECT MAX(salary) AS max_salary
+FROM staff
+WHERE position = 'teacher' AND date_of_dismissal IS NULL;
+
+
+

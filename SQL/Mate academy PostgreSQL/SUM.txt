@@ -1,0 +1,14 @@
+ /* show total_cost of 2017 year movies of USA */
+
+SELECT SUM(budget) AS total_cost
+FROM movie
+WHERE year = 2017 AND release_country = 'USA';
+
+
+ /* show total_cost of 2015 year movies of Ukraine */
+
+SELECT SUM(budget) AS total_cost
+FROM movie
+WHERE year = 2015 AND release_country = 'Ukraine';
+
+

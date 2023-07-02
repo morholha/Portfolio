@@ -1,0 +1,34 @@
+SELECT column_name AS alias_name
+FROM table_name;
+-------------------------------------------------
+SELECT *
+FROM table_name AS alias_name;
+-------------------------------------------------
+
+/* Show movie name, release_date, and country */
+
+SELECT title AS name, date_release AS "release_date", release_country AS country
+FROM movie;
+
+
+/* Find the objects with a name of 7 or more letters. The result should contain two columns: subject_id and subject_name. */
+
+SELECT id AS subject_id, name AS subject_name
+FROM subject
+WHERE name LIKE '_______%'
+
+/* Display the id, name and price of the three most expensive dishes. The result should contain three columns: dish_id, dish_name, and dish_price. */
+SELECT id AS dish_id, name AS dish_name, price AS dish_price
+FROM dish
+ORDER BY price DESC
+LIMIT 3;
+
+
+/* Find the oldest book and display its title. For the resulting column, set an alias - book_title.*/
+
+SELECT title AS book_title
+FROM book
+ORDER BY publish_year ASC
+LIMIT 1;
+
+

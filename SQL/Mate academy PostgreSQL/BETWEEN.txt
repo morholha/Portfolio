@@ -1,0 +1,40 @@
+SELECT ...
+FROM table_name
+WHERE column_name BETWEEN value1 AND value2;
+----------------------------------------------------------------------
+
+/* Find all movies betwen 2017 and 2019 years */
+SELECT *
+FROM movie 
+WHERE year BETWEEN 2017 AND 2019;
+
+/* Find all movies between June and November of 2019 year */
+SELECT *
+FROM movie 
+WHERE date_release BETWEEN '2019-06-01' AND '2019-11-30';
+
+/* Display all information about meals with a calorie count between 270 and 340 calories */
+SELECT *
+FROM dish
+WHERE calories BETWEEN 270 AND 340;
+
+/* Display the title and year of publication of all books published between 2011 and 2015 inclusive */
+SELECT title, publish_year
+FROM book
+WHERE publish_year BETWEEN 2011 AND 2015;
+
+
+/* Find the number (sum) of pages of books published each year from 2011 to 2015 inclusive. Sort the result by year of publication in descending order.
+The result is presented in the form:
+first column - year;
+second column - number_of_pages. */
+
+SELECT publish_year AS year, SUM(number_of_pages) AS number_of_pages
+FROM book
+WHERE publish_year BETWEEN 2011 AND 2015
+GROUP BY publish_year
+ORDER BY publish_year DESC;
+
+
+
+

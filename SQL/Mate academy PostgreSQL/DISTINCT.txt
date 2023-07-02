@@ -1,0 +1,25 @@
+/* Find all movie languages */
+
+SELECT DISTINCT language
+FROM movie;
+
+
+/* Find all movie countries*/
+
+SELECT DISTINCT release_country
+FROM movie;
+
+
+/* Display a list with unique city names from the pupil table */
+
+SELECT DISTINCT city
+FROM pupil;
+
+
+/* Display a list of unique employee positions with a salary greater than 12000. Sort the result by position in alphabetical order. */
+
+SELECT DISTINCT position
+FROM staff
+WHERE salary > 12000
+ORDER BY position ASC;
+

@@ -1,0 +1,36 @@
+
+
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER DATE, ID_CUSTOMER, AMOUNT);
+
+Show first and last names of all customers from CUSTOMERS table and appropriate product names from ORDERS table, also show customers without orders and orders without customers (if any). Please sort the data by First name, last name and product name.
+
+
+
+PS. The SQL version doesn't support FULL JOIN so please try to find something else
+
+
+SELECT FIRSTNAME, LASTNAME, PRODUCT_NAME
+FROM CUSTOMERS
+LEFT JOIN ORDERS ON CUSTOMERS.ID = ORDERS.ID_CUSTOMER
+UNION
+SELECT FIRSTNAME, LASTNAME, PRODUCT_NAME
+FROM ORDERS
+LEFT JOIN CUSTOMERS ON ORDERS.ID_CUSTOMER = CUSTOMERS.ID
+WHERE CUSTOMERS.ID IS NULL
+ORDER BY FIRSTNAME, LASTNAME, PRODUCT_NAME
+----------------------------------------------------------------------------
+
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER DATE, ID_CUSTOMER, AMOUNT);
+
+Show last names from CUSTOMERS table, who have not made any orders. Please sort the list by ID of customers.
+
+SELECT LASTNAME
+FROM CUSTOMERS
+LEFT JOIN ORDERS
+ON CUSTOMERS.ID = ORDERS.ID_CUSTOMER
+WHERE ORDERS.ID_CUSTOMER IS NULL
+ORDER BY CUSTOMERS.ID;

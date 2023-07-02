@@ -1,0 +1,11 @@
+Create table
+Create a table named CUSTOMERS, which contains the ID (first field, primary key, integer value), Last and first names of a customer: FIRSTNAME, LASTNAME (second and third filed using varchar, not more than 30 characters for each one).
+
+PS. Please finish all SQL command with ";"
+
+
+CREATE TABLE CUSTOMERS(
+ID int primary key,
+FIRSTNAME varchar(30),
+LASTNAME varchar(30)
+);

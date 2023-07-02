@@ -1,0 +1,6 @@
+/* For each country, find the total amount of money spent annually on filming. Display the countries in alphabetical order and the years in descending order (2020, 2019 ...) */
+
+SELECT release_country, year, SUM(budget)
+FROM movie
+GROUP BY release_country, year
+ORDER BY release_country, year DESC;

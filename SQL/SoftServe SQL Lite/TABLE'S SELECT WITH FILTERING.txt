@@ -1,0 +1,13 @@
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER DATE, ID_CUSTOMER, AMOUNT);
+
+Show the list of all product's names ordered along with first and last names of the customers.
+
+Please include to the result only those customers who has no address in our database and sort the data by ORDERS.ID
+
+SELECT ORDERS.PRODUCT_NAME, CUSTOMERS.FIRSTNAME, CUSTOMERS.LASTNAME
+FROM ORDERS
+INNER JOIN CUSTOMERS ON ORDERS.ID_CUSTOMER = CUSTOMERS.ID
+WHERE CUSTOMERS.ADDRESS IS NULL
+ORDER BY ORDERS.ID;

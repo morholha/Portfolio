@@ -1,0 +1,89 @@
+SELECT column(s)
+FROM table_1
+[...] JOIN table_2
+ON table_1.column = table_2.column;
+--------------------------------------------
+SELECT *
+FROM book
+INNER JOIN author
+ON book.author_id = author.id;
+--------------------------------------------
+SELECT *
+FROM book
+LEFT JOIN author
+ON book.author_id = author.id;
+--------------------------------------------
+SELECT *
+FROM book
+RIGHT JOIN author
+ON book.author_id = author.id;
+--------------------------------------------
+SELECT *
+FROM book
+FULL OUTER JOIN author
+ON book.author_id = author.id;
+--------------------------------------------
+
+/* Find information about Alisa's books */
+
+SELECT title, year
+FROM book
+INNER JOIN author
+ON book.author_id = author.id
+WHERE first_name = 'Alice';
+
+
+/* Find all information about goods and its category */
+
+SELECT products.*, categories.name AS category_name 
+FROM products
+INNER JOIN categories
+ON products.category_id = categories.id;
+
+
+/* Find goods from Toy's category */
+
+SELECT products.*
+FROM products
+INNER JOIN categories
+ON products.category_id = categories.id
+WHERE categories.name = 'Toys';
+
+
+/* Find quantity of goods from Laptops category */
+
+SELECT COUNT(*)
+FROM products
+INNER JOIN categories
+ON products.category_id = categories.id
+WHERE categories.name = 'Laptops';
+
+
+/* Find the category name where goods with cost > 10000 */
+
+SELECT DISTINCT categories.name
+FROM categories
+INNER JOIN products
+ON categories.id = products.category_id
+WHERE price > 10000;
+
+
+/* Find information about user with id=2. Show result with columns order_id, order_date, product_id, quantity */
+
+SELECT orders.id AS order_id, orders.order_date, order_details.product_id, quantity
+FROM orders
+INNER JOIN order_details
+ON orders.id = order_details.order_id
+WHERE client_id = 2;
+
+/* Find information about quantity of goods of user with id=2. Show result with columns */
+
+SELECT orders.id, orders.order_date, SUM(quantity)
+FROM orders
+INNER JOIN order_details
+ON orders.id = order_details.order_id
+WHERE client_id = 2
+GROUP BY orders.id;
+
+
+

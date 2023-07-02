@@ -1,0 +1,14 @@
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER, ID_CUSTOMER, AMOUNT);
+
+
+Find out which products and when have been ordered in our shop. The results should be sorted by ordering date in ascending order and include only top 3 rows.
+
+PS. Please pay attentions that we are using SQLite version of SQL language and "top 3 rows" can be achieved using additional cause in end of the select sentence as additional phrase "limit 3"
+
+
+SELECT PRODUCT_NAME, DATE_ORDER
+FROM ORDERS
+ORDER BY DATE_ORDER ASC
+LIMIT 3;

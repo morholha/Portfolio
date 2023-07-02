@@ -1,0 +1,11 @@
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER, ID_CUSTOMER, AMOUNT);
+
+
+Get the information about customers (ID_Customer) and order dates from ORDERS table, who have ordered more than two units of some product in one order. Please sort the list by date of ordering.
+
+SELECT o.ID_Customer, o.DATE_ORDER
+FROM ORDERS o
+WHERE o.AMOUNT  2
+ORDER BY o.DATE_ORDER;

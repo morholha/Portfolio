@@ -1,0 +1,33 @@
+/* Find average_duration of 2019 year movies */
+
+SELECT AVG(duration) AS average_duration
+FROM movie
+WHERE year = 2019;
+
+
+/* Find average_cost of 2018 movies */
+
+SELECT AVG(budget) AS average_cost
+FROM movie
+WHERE year = 2018;
+
+
+/* Find the average number of calories of the dishes with a price of 100 or more. Create an alias for the resulting column - calories. */
+
+SELECT AVG(calories) AS calories
+FROM dish
+WHERE price >= 100;
+
+
+/* Find the average weight of meals that contain less than 300 calories. Create an alias for the resulting column - average_weight. */
+
+SELECT AVG(weight) AS average_weight
+FROM dish
+WHERE calories < 300;
+
+
+/* Find the average salary of all employees who started working after January 01, 2015. Create an alias for the resulting column - average_salary. */
+
+SELECT AVG(salary) AS average_salary
+FROM staff
+WHERE date_of_hiring > '2015-01-01';

@@ -1,0 +1,69 @@
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER DATE, ID_CUSTOMER, AMOUNT);
+
+
+
+1.      List the names of products sold in our shop and their total amount
+
+2.      List the names of products sold in our shop and their total amount and the total sum as well.
+
+3.      List the names of products along with the count of customers who have ordered them.
+
+
+Please make series of SELECTs and sort each one by PRODUCT_NAME
+
+
+SELECT PRODUCT_NAME, SUM(ORDERS.AMOUNT) AS TOTAL_AMOUNT
+FROM ORDERS
+GROUP BY PRODUCT_NAME
+ORDER BY ORDERS.PRODUCT_NAME;
+
+SELECT ORDERS.PRODUCT_NAME, SUM(ORDERS.AMOUNT) AS TOTAL_AMOUNT, SUM(ORDERS.AMOUNT * ORDERS.PRODUCT_PRICE) AS TOTAL_SUM
+FROM ORDERS
+GROUP BY ORDERS.PRODUCT_NAME
+ORDER BY ORDERS.PRODUCT_NAME;
+
+SELECT ORDERS.PRODUCT_NAME, COUNT(ORDERS.ID_CUSTOMER) AS CUSTOMER_COUNT
+FROM ORDERS
+GROUP BY ORDERS.PRODUCT_NAME
+ORDER BY ORDERS.PRODUCT_NAME;
+---------------------------------------------------------------------------------------------------------------------------
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER DATE, ID_CUSTOMER, AMOUNT);
+
+
+
+Determine how many orders have been made for the products cheaper than 10000$.
+
+SELECT COUNT(*) AS CHEAP_PRODUCT_ORDERS_COUNT
+FROM ORDERS
+WHERE ORDERS.PRODUCT_PRICE < 10000;
+--------------------------------------------------------------------------------------------------------------------------
+
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER DATE, ID_CUSTOMER, AMOUNT);
+
+
+1.  List the first and last names of the customers along with the count of their orders.
+
+2.  List the first and last names of the customers and calculate the total sum of their orders.
+
+
+Please make series of SELECTs and sort each one by FIRSTNAME and LASTNAME
+
+
+SELECT CUSTOMERS.FIRSTNAME, CUSTOMERS.LASTNAME, COUNT(ORDERS.ID) AS ORDER_COUNT
+FROM CUSTOMERS
+JOIN ORDERS ON CUSTOMERS.ID = ORDERS.ID_CUSTOMER
+GROUP BY CUSTOMERS.ID
+ORDER BY CUSTOMERS.FIRSTNAME, CUSTOMERS.LASTNAME;
+
+SELECT CUSTOMERS.FIRSTNAME, CUSTOMERS.LASTNAME, SUM(ORDERS.AMOUNT * ORDERS.PRODUCT_PRICE) AS TOTAL_ORDER_SUM
+FROM CUSTOMERS
+JOIN ORDERS ON CUSTOMERS.ID = ORDERS.ID_CUSTOMER
+GROUP BY CUSTOMERS.ID
+ORDER BY CUSTOMERS.FIRSTNAME, CUSTOMERS.LASTNAME;
+

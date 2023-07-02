@@ -1,0 +1,11 @@
+/* Find info about movies 2015-2019, show 'title-year' */
+
+SELECT CONCAT(title, '-', year)
+FROM movie
+WHERE year BETWEEN 2015 AND 2019;
+
+/* show information about user 'Address: country, city, street, house number */
+
+SELECT CONCAT('Address: ', country, city, street, house_number)
+FROM users
+WHERE user_id = 2;

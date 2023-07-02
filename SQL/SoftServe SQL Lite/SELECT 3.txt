@@ -1,0 +1,10 @@
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER, ID_CUSTOMER, AMOUNT);
+
+Show all orders (all fields), that have been made before year 2015. Please sort the data by ID
+
+SELECT *
+FROM ORDERS
+WHERE DATE_ORDER < '2015-01-01'
+ORDER BY ID;

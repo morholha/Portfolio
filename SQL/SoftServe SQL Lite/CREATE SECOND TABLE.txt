@@ -1,0 +1,11 @@
+CREATE SECOND TABLE
+
+Create a table named ORDERS, which contains an ID field of integer type for storing an order number (primary key), field with product names (PRODUCT_NAME) of a string type (varchar(30)), field with product price (PRODUCT_PRICE) of float type,  field with a date of the order (DATE_ORDER) of a date type, and a number of customer (ID_CUSTOMER) of integer type.
+
+CREATE TABLE ORDERS (
+ID INT PRIMARY KEY,
+PRODUCT_NAME VARCHAR(30),
+PRODUCT_PRICE FLOAT,
+DATE_ORDER DATE,
+ID_CUSTOMER INT
+);

@@ -1,0 +1,9 @@
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER DATE, ID_CUSTOMER, AMOUNT);
+
+1. Change the information about the order with ID=14 replacing the product amount with 5.
+
+2. Change the information about the order with ID=15 decreasing the product price by 10%.
+UPDATE ORDERS SET AMOUNT = 5 WHERE ID = 14;
+UPDATE ORDERS SET PRODUCT_PRICE = PRODUCT_PRICE * 0.9 WHERE ID = 15;

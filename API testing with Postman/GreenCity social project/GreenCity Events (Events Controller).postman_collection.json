@@ -1,0 +1,2528 @@
+{
+	"info": {
+		"_postman_id": "33664230-2f8d-46f1-96d6-9761537a87cf",
+		"name": "GreenCity Events (Events Controller)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27140729",
+		"_collection_link": "https://universal-spaceship-292481.postman.co/workspace/Events~145d9af4-6cad-4d66-83c9-0ef6cdd3f477/collection/27140729-33664230-2f8d-46f1-96d6-9761537a87cf?action=share&creator=27140729&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "View my events",
+			"item": [
+				{
+					"name": "Sign-In 200",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"my_token\", jsonData.accessToken);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"Mainstroun@gmail.com\",\r\n    \"password\": \"Autocherep1312@\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://greencity-user.greencity.social/ownSecurity/signIn",
+							"protocol": "https",
+							"host": [
+								"greencity-user",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"ownSecurity",
+								"signIn"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all events 200",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{my_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://greencity.greencity.social/events?page=0&size=5",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get event '212' 200",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{my_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://greencity.greencity.social/events/event/7",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"event",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get event '212' 400",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{my_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://greencity.greencity.social/events/event/7%",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"event",
+								"7%"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get events created by user 200",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{my_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "greencity.greencity.social/events/myEvents/createdEvents?page=0&size=5",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"myEvents",
+								"createdEvents"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get events created by user 401",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "greencity.greencity.social/events/myEvents/createdEvents?page=0&size=5",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"myEvents",
+								"createdEvents"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get events created by user 403",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{my_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "greencity.greencity.social/events/myEvents/createdEvents11?page=0&size=5",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"myEvents",
+								"createdEvents11"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create event",
+			"item": [
+				{
+					"name": "Sign In Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"mytoken\", jsonData.accessToken);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Admin\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"email\": \"admin.greencity@starmaker.email\", \"password\": \"GreenCityAdmin-1\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://greencity-user.greencity.social/ownSecurity/signIn",
+							"protocol": "https",
+							"host": [
+								"greencity-user",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"ownSecurity",
+								"signIn"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign In User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"usertoken\", jsonData.accessToken);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"email\": \"goravitaliy29@gmail.com\", \"password\": \"Ololo987#987\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://greencity-user.greencity.social/ownSecurity/signIn",
+							"protocol": "https",
+							"host": [
+								"greencity-user",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"ownSecurity",
+								"signIn"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create 201 User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"eventId\", jsonData.id);\r",
+									"\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{usertoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "addEventDtoRequest",
+									"value": "{\n    \"title\":\"Create Event API\",\n    \"description\":\"12345678jhvf1011121354687\",\n    \"open\":true,\n    \"datesLocations\":[\n        {\n            \"startDate\":\"2023-06-28T15:00:00Z\",\n            \"finishDate\":\"2023-06-28T17:00:00Z\",\n            \"coordinates\":{\n                \"latitude\":50.43353,\n                \"longitude\":30.53789\n }\n        }\n    ],\n    \"tags\":[\"Social\"]\n}   ",
+									"type": "text"
+								},
+								{
+									"key": "array[file]",
+									"value": "\"https://csb10032000a548f571.blob.core.windows.net/allfiles/8f09887c-2fbf-4ee1-95fc-6763a1873b93EventDefaultImage.png\"",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://greencity.greencity.social/events/create",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create 201 Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"eventId\", jsonData.id);\r",
+									"\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{mytoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "addEventDtoRequest",
+									"value": "{\n    \"title\":\"Create Event API\",\n    \"description\":\"12345678jhvf1011121354687\",\n    \"open\":true,\n    \"datesLocations\":[\n        {\n            \"startDate\":\"2023-06-28T15:00:00Z\",\n            \"finishDate\":\"2023-06-28T17:00:00Z\",\n            \"coordinates\":{\n                \"latitude\":50.43353,\n                \"longitude\":30.53789\n }\n        }\n    ],\n    \"tags\":[\"Social\"]\n}   ",
+									"type": "text"
+								},
+								{
+									"key": "array[file]",
+									"value": "\"https://csb10032000a548f571.blob.core.windows.net/allfiles/8f09887c-2fbf-4ee1-95fc-6763a1873b93EventDefaultImage.png\"",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://greencity.greencity.social/events/create",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create 400",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{mytoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "addEventDtoRequest",
+									"value": "{\n    \"title\":\"string\",\n    \"description\":\"string\",\n    \"open\":true,\n    \"datesLocations\":[\n        {\n            \"startDate\":\"2023-05-27T15:00:00Z\",\n            \"finishDate\":\"2023-05-27T17:00:00Z\",\n            \"coordinates\":{\n                \"latitude\":1,\n                \"longitude\":1\n            },\n            \"onlineLink\":\"string\"\n        }\n    ],\n    \"tags\":[\"Social\"]\n}   ",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://greencity.greencity.social/events/create",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create 401",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "addEventDtoRequest",
+									"value": "{\n    \"title\":\"Create Event API\",\n    \"description\":\"12345678jhvf1011121354687\",\n    \"open\":true,\n    \"datesLocations\":[\n        {\n            \"startDate\":\"2023-06-28T15:00:00Z\",\n            \"finishDate\":\"2023-06-28T17:00:00Z\",\n            \"coordinates\":{\n                \"latitude\":50.43353,\n                \"longitude\":30.53789\n }\n        }\n    ],\n    \"tags\":[\"Social\"]\n}   ",
+									"type": "text"
+								},
+								{
+									"key": "array[file]",
+									"value": "\"https://csb10032000a548f571.blob.core.windows.net/allfiles/8f09887c-2fbf-4ee1-95fc-6763a1873b93EventDefaultImage.png\"",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://greencity.greencity.social/events/create",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Edit event",
+			"item": [
+				{
+					"name": "login_admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"edit_event_token\", jsonData.accessToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{admin_username}}\",\r\n  \"password\": \"{{admin_password}}\"\r\n}"
+						},
+						"url": {
+							"raw": "https://greencity-user.greencity.social/ownSecurity/signIn",
+							"protocol": "https",
+							"host": [
+								"greencity-user",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"ownSecurity",
+								"signIn"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/events/create_admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"edit_event_id\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{edit_event_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "Referer",
+								"value": "https://www.greencity.social/"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "addEventDtoRequest",
+									"value": "{\"title\":\"event admin\",\"description\":\"<p>admin event admin event  admin event </p>\",\"open\":true,\"datesLocations\":[{\"startDate\":\"2023-06-30T00:00:00+03:00\",\"finishDate\":\"2023-06-30T23:59:00+03:00\",\"coordinates\":{\"latitude\":50.43353,\"longitude\":30.53789},\"onlineLink\":\"https://www.greencity.social/#/events/create-event\"}],\"tags\":[\"Economic\"]}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://greencity.greencity.social/events/create",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login_user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"edit_event_user_token\", jsonData.accessToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{user_username}}\",\r\n  \"password\": \"{{user_password}}\"\r\n}"
+						},
+						"url": {
+							"raw": "https://greencity-user.greencity.social/ownSecurity/signIn",
+							"protocol": "https",
+							"host": [
+								"greencity-user",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"ownSecurity",
+								"signIn"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/events/create_user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"edit_event_id2\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{edit_event_user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "Referer",
+								"value": "https://www.greencity.social/"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "addEventDtoRequest",
+									"value": "{\"title\":\"event admin\",\"description\":\"<p>admin event admin event  admin event </p>\",\"open\":true,\"datesLocations\":[{\"startDate\":\"2023-06-30T00:00:00+03:00\",\"finishDate\":\"2023-06-30T23:59:00+03:00\",\"coordinates\":{\"latitude\":50.43353,\"longitude\":30.53789},\"onlineLink\":\"https://www.greencity.social/#/events/create-event\"}],\"tags\":[\"Economic\"]}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://greencity.greencity.social/events/create",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/events/update_admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{edit_event_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+								"key": "Content-Type",
+								"value": "multipart/form-data;"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "eventDto",
+									"value": "{\"title\":\"event2\",\"description\":\"<p>event event event event event event event event</p>\",\"open\":true,\"datesLocations\":[{\"startDate\":\"2023-06-15T00:00:00+03:00\",\"finishDate\":\"2023-06-15T23:59:00+03:00\",\"onlineLink\":\"https://www.greencity.social/#/events/create-event\"}],\"tags\":[\"Economic\"],\"imagesToDelete\":[],\"additionalImages\":null,\"id\":{{edit_event_id}},\"titleImage\":\"https://csb10032000a548f571.blob.core.windows.net/allfiles/8f09887c-2fbf-4ee1-95fc-6763a1873b93EventDefaultImage.png\"}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://greencity.greencity.social/events/update",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/events/update_users_event_as_admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{edit_event_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+								"key": "Content-Type",
+								"value": "multipart/form-data;"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "eventDto",
+									"value": "{\"title\":\"event2\",\"description\":\"<p>event event event event event event event event</p>\",\"open\":true,\"datesLocations\":[{\"startDate\":\"2023-06-15T00:00:00+03:00\",\"finishDate\":\"2023-06-15T23:59:00+03:00\",\"onlineLink\":\"https://www.greencity.social/#/events/create-event\"}],\"tags\":[\"Economic\"],\"imagesToDelete\":[],\"additionalImages\":null,\"id\":{{edit_event_id2}},\"titleImage\":\"https://csb10032000a548f571.blob.core.windows.net/allfiles/8f09887c-2fbf-4ee1-95fc-6763a1873b93EventDefaultImage.png\"}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://greencity.greencity.social/events/update",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update_event_unauthorized_user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+								"key": "Content-Type",
+								"value": "multipart/form-data;"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "eventDto",
+									"value": "{\"title\":\"event2\",\"description\":\"<p>event event event event event event event event</p>\",\"open\":true,\"datesLocations\":[{\"startDate\":\"2023-06-15T00:00:00+03:00\",\"finishDate\":\"2023-06-15T23:59:00+03:00\",\"onlineLink\":\"https://www.greencity.social/#/events/create-event\"}],\"tags\":[\"Economic\"],\"imagesToDelete\":[],\"additionalImages\":null,\"id\":{{edit_event_id}},\"titleImage\":\"https://csb10032000a548f571.blob.core.windows.net/allfiles/8f09887c-2fbf-4ee1-95fc-6763a1873b93EventDefaultImage.png\"}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://greencity.greencity.social/events/update",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/events/update_user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{edit_event_user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+								"key": "Content-Type",
+								"value": "multipart/form-data;"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "eventDto",
+									"value": "{\"title\":\"event2\",\"description\":\"<p>event event event event event event event event</p>\",\"open\":true,\"datesLocations\":[{\"startDate\":\"2023-06-15T00:00:00+03:00\",\"finishDate\":\"2023-06-15T23:59:00+03:00\",\"onlineLink\":\"https://www.greencity.social/#/events/create-event\"}],\"tags\":[\"Economic\"],\"imagesToDelete\":[],\"additionalImages\":null,\"id\":{{edit_event_id2}},\"titleImage\":\"https://csb10032000a548f571.blob.core.windows.net/allfiles/8f09887c-2fbf-4ee1-95fc-6763a1873b93EventDefaultImage.png\"}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://greencity.greencity.social/events/update",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/events/update_user_bad_request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{edit_event_user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+								"key": "Content-Type",
+								"value": "multipart/form-data;"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "eventDto",
+									"value": "{\"title\":\"event2\",\"description\":\"<p>event event event event event event event event</p>\",\"open\":true,\"datesLocations\":[{\"startDate\":\"2023-06-15\",\"finishDate\":\"2023-06-15T23:59:00+03:00\",\"onlineLink\":\"https://www.greencity.social/#/events/create-event\"}],\"tags\":[\"Economic\"],\"imagesToDelete\":[],\"additionalImages\":null,\"id\":{{edit_event_id2}},\"titleImage\":\"https://csb10032000a548f571.blob.core.windows.net/allfiles/8f09887c-2fbf-4ee1-95fc-6763a1873b93EventDefaultImage.png\"}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://greencity.greencity.social/events/update",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/events/update_admin's_event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{edit_event_user_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+								"key": "Content-Type",
+								"value": "multipart/form-data;"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "eventDto",
+									"value": "{\"title\":\"event2\",\"description\":\"<p>event event event event event event event event</p>\",\"open\":true,\"datesLocations\":[{\"startDate\":\"2023-06-15T00:00:00+03:00\",\"finishDate\":\"2023-06-15T23:59:00+03:00\",\"onlineLink\":\"https://www.greencity.social/#/events/create-event\"}],\"tags\":[\"Economic\"],\"imagesToDelete\":[],\"additionalImages\":null,\"id\":{{edit_event_id}},\"titleImage\":\"https://csb10032000a548f571.blob.core.windows.net/allfiles/8f09887c-2fbf-4ee1-95fc-6763a1873b93EventDefaultImage.png\"}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://greencity.greencity.social/events/update",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/events/delete/{eventId}_admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//pm.globals.unset(\"token\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{edit_event_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://greencity.greencity.social/events/delete/{{edit_event_id}}",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"delete",
+								"{{edit_event_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_deleted_event_admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{edit_event_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+								"key": "Content-Type",
+								"value": "multipart/form-data;"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "eventDto",
+									"value": "{\"title\":\"event2\",\"description\":\"<p>event event event event event event event event</p>\",\"open\":true,\"datesLocations\":[{\"startDate\":\"2023-06-15T00:00:00+03:00\",\"finishDate\":\"2023-06-15T23:59:00+03:00\",\"onlineLink\":\"https://www.greencity.social/#/events/create-event\"}],\"tags\":[\"Economic\"],\"imagesToDelete\":[],\"additionalImages\":null,\"id\":{{edit_event_id}},\"titleImage\":\"https://csb10032000a548f571.blob.core.windows.net/allfiles/8f09887c-2fbf-4ee1-95fc-6763a1873b93EventDefaultImage.png\"}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://greencity.greencity.social/events/update",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete events",
+			"item": [
+				{
+					"name": "Sign in as admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"mytoken\", jsonData.accessToken);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"email\": \"admin.greencity@starmaker.email\", \"password\": \"GreenCityAdmin-1\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://greencity-user.greencity.social/ownSecurity/signIn",
+							"protocol": "https",
+							"host": [
+								"greencity-user",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"ownSecurity",
+								"signIn"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign in as user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"userToken\", jsonData.accessToken);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"email\": \"testolha77@gmail.com\", \"password\": \"1q2w3e4r5T=\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://greencity-user.greencity.social/ownSecurity/signIn",
+							"protocol": "https",
+							"host": [
+								"greencity-user",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"ownSecurity",
+								"signIn"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"eventId\", jsonData.id);\r",
+									"\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{mytoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "addEventDtoRequest",
+									"value": "{\n    \"title\":\"API test Event\",\n    \"description\":\"1234567891011121354687\",\n    \"open\":true,\n    \"datesLocations\":[\n        {\n            \"startDate\":\"2023-06-27T15:00:00Z\",\n            \"finishDate\":\"2023-06-27T17:00:00Z\",\n            \"coordinates\":{\n                \"latitude\":50.43353,\n                \"longitude\":30.53789\n            }\n        }\n    ],\n    \"tags\":[\"Social\"]\n}   \n",
+									"type": "text"
+								},
+								{
+									"key": "array[file]",
+									"value": "\"https://csb10032000a548f571.blob.core.windows.net/allfiles/8f09887c-2fbf-4ee1-95fc-6763a1873b93EventDefaultImage.png\"",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://greencity.greencity.social/events/create",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete event 200 OK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{mytoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://greencity.greencity.social/events/delete/{{eventId}}",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"delete",
+								"{{eventId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete event 400 Bad request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{mytoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://greencity.greencity.social/events/delete/{{}}",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"delete",
+								"{{}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete event 401 \t Unauthorized",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://greencity.greencity.social/events/delete/{{eventId}}",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"delete",
+								"{{eventId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete event 403 Firbidden",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{myToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://greencity.greencity.social/events/delete/?id=205",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"delete",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "205"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete event 404 Not Found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{mytoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://greencity.greencity.social/events/delete/?id=205",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"events",
+								"delete",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "205"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "API homework",
+			"item": [
+				{
+					"name": "Sign in",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"mytoken\", jsonData.accessToken);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 300ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"email\": \"admin.greencity@starmaker.email\", \"password\": \"GreenCityAdmin-1\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://greencity-user.greencity.social/ownSecurity/signIn",
+							"protocol": "https",
+							"host": [
+								"greencity-user",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"ownSecurity",
+								"signIn"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all news on",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									" var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"ecoNewsId\", jsonData.page[0].id);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 300ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{mytoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://greencity.greencity.social/econews?page=0&size=1",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"econews"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add coment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"parentCommentId\", jsonData.id);\r",
+									"\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 300ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{mytoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"parentCommentId\": 0,\r\n  \"text\": \"Comment for like\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://greencity.greencity.social/econews/comments/{{ecoNewsId}}",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"econews",
+								"comments",
+								"{{ecoNewsId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 300ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{mytoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "https://greencity.greencity.social/econews/comments?id=69&text=Olha Morhun API test 2",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"econews",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "69"
+								},
+								{
+									"key": "text",
+									"value": "Olha Morhun API test 2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all active comments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 300ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{mytoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://greencity.greencity.social/econews/comments/active?page=0&size=5",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"econews",
+								"comments",
+								"active"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Count comments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 300ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{mytoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://greencity.greencity.social/econews/comments/count/comments/{{ecoNewsId}}",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"econews",
+								"comments",
+								"count",
+								"comments",
+								"{{ecoNewsId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 300ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{mytoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "id",
+								"value": "{{parentCommentId}}",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "id",
+								"value": "76",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://greencity.greencity.social/econews/comments/?id={{parentCommentId}}",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"econews",
+								"comments",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{parentCommentId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Count replies to comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 300ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{mytoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://greencity.greencity.social/econews/comments/count/replies/{{parentCommentId}}",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"econews",
+								"comments",
+								"count",
+								"replies",
+								"{{parentCommentId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Like comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 300ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{mytoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://greencity.greencity.social/econews/comments/like/?id={{parentCommentId}}",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"econews",
+								"comments",
+								"like",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{parentCommentId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all replies to comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 300ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{mytoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://greencity.greencity.social/econews/comments/replies/{{parentCommentId}}?page=0&size=5",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"econews",
+								"comments",
+								"replies",
+								"{{parentCommentId}}"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all active replies to comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 300ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{mytoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://greencity.greencity.social/econews/comments/replies/active/{{parentCommentId}}?page=0&size=5",
+							"protocol": "https",
+							"host": [
+								"greencity",
+								"greencity",
+								"social"
+							],
+							"path": [
+								"econews",
+								"comments",
+								"replies",
+								"active",
+								"{{parentCommentId}}"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "admin_username",
+			"value": "admin.greencity@starmaker.email",
+			"type": "string"
+		},
+		{
+			"key": "admin_password",
+			"value": "GreenCityAdmin-1",
+			"type": "string"
+		},
+		{
+			"key": "user_username",
+			"value": "t22884006@gmail.com",
+			"type": "string"
+		},
+		{
+			"key": "user_password",
+			"value": "Gc-12345",
+			"type": "string"
+		}
+	]
+}

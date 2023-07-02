@@ -1,0 +1,27 @@
+/* Show information about 3 newest movies */
+SELECT *
+FROM movie
+ORDER BY date_release DESC
+LIMIT 3;
+
+/* Display all the information about the three youngest students.*/
+SELECT *
+FROM pupil
+ORDER BY birth_date DESC
+LIMIT 3;
+
+/* Display the name, surname, and date of birth of the oldest employee who is still working.*/
+
+SELECT first_name, last_name, birth_date
+FROM staff
+WHERE date_of_dismissal IS NULL
+ORDER BY birth_date ASC
+LIMIT 1;
+
+/* Display the name, surname, and date of birth of the youngest employee who left the company. */
+
+SELECT first_name, last_name, birth_date
+FROM staff
+WHERE date_of_dismissal IS NOT NULL
+ORDER BY birth_date DESC
+LIMIT 1;

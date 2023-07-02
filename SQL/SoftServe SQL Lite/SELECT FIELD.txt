@@ -1,0 +1,9 @@
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER, ID_CUSTOMER, AMOUNT);
+
+Find out which customers have been registered in our shop (show all available fields). Please sort the list by ID.
+
+SELECT *
+FROM CUSTOMERS
+ORDER BY ID;

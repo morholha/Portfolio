@@ -1,0 +1,11 @@
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER, ID_CUSTOMER, AMOUNT);
+
+
+Show last names of all customers whose addresses are not stored in our database. Please sort the list of customers by ID.
+
+SELECT LASTNAME
+FROM CUSTOMERS
+WHERE ADDRESS IS NULL
+ORDER BY ID;

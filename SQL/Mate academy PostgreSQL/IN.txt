@@ -1,0 +1,28 @@
+SELECT ...
+FROM table_name
+WHERE column_name IN (value1, value2, ...);
+--------------------------------------------------------
+/* Find all movies in USA, Spain, China countries
+SELECT *
+FROM movie
+WHERE release_country IN ('USA, 'Spain', 'China');
+
+/* Find movies in 2015 or 2017 or 2019 */
+SELECT *
+FROM movie
+WHERE year IN (2015, 2017, 2019);
+
+/* Find movies in 2015 or 2017 in Ukraine or Spain */
+SELECT *
+FROM movie
+WHERE year IN (2015, 2017) AND release_country IN ('Spain', 'Ukraine');
+
+/* Display all information about dishes with a price of 90, 95, or 125 */
+SELECT *
+FROM dish
+WHERE price IN (90, 95, 125);
+
+/* Display the first name, last name, date of birth, and city of students named 'Eugen', 'Anna', or 'Volodymyr' */
+SELECT first_name, last_name, birth_date, city
+FROM pupil
+WHERE first_name IN ('Eugen', 'Anna', 'Volodymyr');

@@ -1,0 +1,31 @@
+EXTRACT(part FROM date)
+--------------------------------
+
+/* Show name, day, month, year of 5 newest movies in 4 different columns */
+
+SELECT title, EXTRACT(DAY FROM date_release) AS day, EXTRACT(MONTH FROM date_release) AS month, EXTRACT(YEAR FROM date_release) AS year
+FROM movie
+ORDER BY date_release DESC
+LIMIT 5;
+
+
+/* Show name and budget of movies date release in November, USA */
+
+SELECT title, budget
+FROM
+WHERE release_country = 'USA' AND EXTRACT(MONTH FROM date_release) = 11;
+
+
+/*  Count movies that are released every month, show month number and movie quantity, order months ASC */
+
+SELECT EXTRACT(MONTH FROM date_release) AS month, COUNT(title)
+FROM movie
+GROUP BY month
+ORDER BY month;
+
+
+/* Find the count of movies with unniversary in this month */
+
+SELECT COUNT(title)
+FROM movie
+WHERE EXTRACT(MONTH FROM date_release) = EXTRACT(MONTH FROM CURRENT_DATE);

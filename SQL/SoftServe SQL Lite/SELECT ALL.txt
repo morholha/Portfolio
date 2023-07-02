@@ -1,0 +1,9 @@
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER, ID_CUSTOMER, AMOUNT);
+
+Show name of products from ORDERS table in one query ordered alphabetically.
+
+SELECT PRODUCT_NAME
+FROM ORDERS
+ORDER BY PRODUCT_NAME ASC;

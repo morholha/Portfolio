@@ -1,0 +1,89 @@
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+GROUP BY column_name(s)
+-------------------------------
+
+/* Find min square for every type of shape */ 
+SELECT type, MIN(area)
+FROM shape
+GOUP BY type;
+
+
+/* Find quantity of movies in every country */
+
+SELECT release_country, COUNT(*)
+FROM movie
+GROUP BY release_country;
+
+
+/* Find quantity of movies in every country between 2017 and 2019 years */
+
+SELECT release_country, COUNT(*)
+FROM movie
+WHERE year BETWEEN 2017 AND 2019
+GROUP BY release_country;
+
+
+/* Find sum of money for movies every year */
+
+SELECT year, SUM(budget)
+FROM movie
+GROUP BY year
+ORDER BY year;
+
+/* Find the shortest and longest movie duration for every existing country */
+
+SELECT country, MIN(duration), MAX(duration)
+FROM movies
+GROUP BY release_country;
+
+
+/* Count the number of students in each city.
+
+The result is presented in the form:
+
+first column - city;
+second column - number_of_pupils. */
+
+SELECT city, COUNT(*) AS number_of_pupils
+FROM pupil
+GROUP BY city;
+
+/*Count the number of students in each city.
+
+The result is presented in the form:
+
+first column - city;
+second column - number_of_pupils. */
+
+SELECT sex, COUNT(*) AS number_of_staff
+FROM staff
+WHERE date_of_dismissal IS NULL
+GROUP BY sex;
+
+
+/* Find the number of students with a particular name. Sort the names in alphabetical order.
+
+The result is presented in the form:
+
+first column - first_name;
+second column - number_of_pupils. */
+
+SELECT first_name, COUNT(*) AS number_of_pupils
+FROM pupil
+GROUP BY first_name;
+
+
+/* Find the maximum salary for each position.
+The result is presented in the form:
+first column - position;
+second column - max_salary. */
+
+SELECT position, MAX(salary) AS max_salary
+FROM staff
+GROUP BY position;
+
+
+
+

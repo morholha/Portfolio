@@ -1,0 +1,6 @@
+ALTER TABLE
+
+To the CUSTOMERS table, add a field named ADDRESS of a string type (varchar), which could contain up to 100 characters.
+
+ALTER TABLE CUSTOMERS
+ADD ADDRESS varchar(100);

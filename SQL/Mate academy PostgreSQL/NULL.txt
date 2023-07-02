@@ -1,0 +1,48 @@
+SELECT ...
+FROM table_name
+WHERE column IS NULL;
+----------------------------------
+/* Find all movies without budget*/
+SELECT *
+FROM movie
+WHERE budget IS NULL;
+
+/* Find all movies with budget*/
+SELECT *
+FROM movie
+WHERE budget IS NOT NULL;
+
+/* Find all movies without year */
+SELECT *
+FROM movie
+WHERE year IS NULL;
+
+/* Find all movies with year */
+SELECT *
+FROM movie
+WHERE year IS NOT NULL;
+
+/* Find all movies without year or without budget */
+SELECT *
+FROM movie
+WHERE year IS NULL OR budget IS NULL;
+
+/* Find all movies without year and without budget */
+SELECT *
+FROM movie
+WHERE year IS NULL AND budget IS NULL;
+
+/* Display all information about dismissed employees */
+SELECT *
+FROM staff
+WHERE date_of_dismissal IS NOT NULL;
+
+/* Display names and surnames of employees who do not have a phone number */
+SELECT first_name, last_name
+FROM staff
+WHERE phone IS NULL;
+
+/* Display all information about students who do not have the phone number of at least one parent. */
+SELECT *
+FROM pupil
+WHERE mother_phone IS NULL OR father_phone IS NULL;

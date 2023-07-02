@@ -1,0 +1,147 @@
+/* All movies 2015 of year */
+SELECT *
+FROM movie
+WHERE year = 2015;
+
+/* All movies with English language */
+SELECT *
+FROM movie
+WHERE language = 'English';
+
+/* All movies without 2019 year */
+SELECT *
+FROM movie
+WHERE year != 2019;
+
+/* All movies without 2015 year */
+SELECT *
+FROM movie
+WHERE NOT year = 2015;
+
+/* All movies including 2014 and less years */
+SELECT *
+FROM movie
+WHERE year <= 2014;
+
+/* All movies including 2017 and more years */
+SELECT *
+FROM movie
+WHERE year >= 2017;
+
+/* All movies with LADY BIRD and titles with alphabetically increasing */
+SELECT *
+FROM movie
+WHERE title >= 'LADY BIRD';
+
+/* All movies with alphabetically increasing titles after LADY BIRD title */
+SELECT *
+FROM movie
+WHERE title > 'LADY BIRD';
+
+/* All movies with alphabetically decreasing titles before LADY BIRD title */
+SELECT *
+FROM movie
+WHERE title < 'LADY BIRD';
+
+/* All movies in 2017 and USA */
+SELECT *
+FROM movie
+WHERE year = 2017 AND release_country = 'USA';
+
+
+/* All movies in 2015 or 2016 or 2019  */
+SELECT *
+FROM movie
+WHERE year = 2015 OR year = 2016 OR year = 2019;
+
+/* Ukrainian or USA movies of 2015 year */
+SELECT *
+FROM movie
+WHERE year = 2015 AND (release_country = 'Ukraine' OR release_country = 'USA');
+
+/* Display the names and surnames of all students who live in Kyiv */
+SELECT first_name, last_name
+FROM pupil
+WHERE city = 'Kyiv';
+
+/*Display the titles of all books published in 2012 */
+SELECT title
+FROM book
+WHERE publish_year = 2012;
+
+/* Display the names of dishes from the dish table that cost more than 80: */
+SELECT name
+FROM dish
+WHERE price > 80;
+
+/* Display all information about dishes that contain 300 calories or less */
+SELECT *
+FROM dish
+WHERE calories <= 300;
+
+/* Show all information about students who are not from Kyiv */
+SELECT *
+FROM pupil
+WHERE city != 'Kyiv';
+
+/* Display the first name, last name, and date of birth of all employees whose job title is not teacher */
+SELECT first_name, last_name, birth_date
+FROM staff
+WHERE NOT position = 'teacher';
+
+
+/* Display all information about employees with a salary of 10,000 or more */
+SELECT *
+FROM staff
+WHERE salary >= 10000;
+
+/* Display the name, surname, and date of birth of all students born before January 1, 2003 */
+SELECT first_name, last_name, birth_date
+FROM pupil
+WHERE birth_date < '2003-01-01';
+
+/* You need to display the titles of all books for which both conditions are met:
+they were published (publish_year) after 2013;
+number_of_pages is less than or equal to 310.
+*/
+SELECT title
+FROM book
+WHERE publish_year > 2013 AND number_of_pages <= 310;
+
+/* Display all information about employees who:
+are male;
+started working after 01.01.2014 (date_of_hiring column);
+have a salary of more than 10000 (not including).
+*/
+
+SELECT *
+FROM staff
+WHERE sex = 'male' AND date_of_hiring >'2014-01-01' AND salary > 10000;
+
+
+/* You need to display all information about books that were published in 2012 or 2015 */ 
+SELECT *
+FROM book
+WHERE publish_year = 2012 OR publish_year = 2015;
+
+/* Display all information about all students who live in Kyiv, Irpin, or Brovary */
+SELECT *
+FROM pupil
+WHERE city = 'Kyiv' OR city = 'Irpin' OR city = 'Brovary';
+
+
+/* Display the names of dishes with more than 280 calories and less than 300 calories */
+SELECT name 
+FROM dish
+WHERE calories > 280 AND calories < 300;
+
+/* Display the titles of all books that meet two conditions:
+
+published before 2012 inclusive or after 2017 inclusive;
+contain more than 240 pages.
+*/
+SELECT title 
+FROM book
+WHERE (publish_year <= 2012 OR publish_year >= 2017) AND number_of_pages > 240;
+
+

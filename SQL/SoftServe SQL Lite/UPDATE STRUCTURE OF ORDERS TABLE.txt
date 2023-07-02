@@ -1,0 +1,6 @@
+UPDATE STRUCTURE OF ORDERS TABLE
+
+To the table ORDERS, add the AMOUNT field of integer type, which would store the amount of the item bought.
+
+ALTER TABLE ORDERS
+ADD AMOUNT INT;

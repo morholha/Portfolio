@@ -1,0 +1,5 @@
+host: greencity-main.postgres.database.azure.com
+user: test_user
+password: ac230a9c-893b-4db9-8c2d-072550c9c864
+Database: greencity (greencity + greencity-user) 
+Database: greencity_ubs (greencity-ubs)

@@ -1,0 +1,11 @@
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER, ID_CUSTOMER, AMOUNT);
+
+
+Show first and last names of all customers whose first names contain exactly 6 letters. Sort be ID
+
+SELECT FIRSTNAME, LASTNAME
+FROM CUSTOMERS
+WHERE LENGTH(FIRSTNAME) = 6
+ORDER BY ID;

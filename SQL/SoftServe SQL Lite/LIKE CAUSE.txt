@@ -1,0 +1,11 @@
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER, ID_CUSTOMER, AMOUNT);
+
+
+Find first and last names of all customers from CUSTOMERS table whose last names start with «K» letter. Please order customers by ID.
+
+SELECT FIRSTNAME, LASTNAME
+FROM CUSTOMERS
+WHERE LASTNAME LIKE 'K%'
+ORDER BY ID;

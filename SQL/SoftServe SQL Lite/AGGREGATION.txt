@@ -1,0 +1,200 @@
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER DATE, ID_CUSTOMER, AMOUNT);
+
+
+Determine the biggest amount of some product among all orders.
+
+SELECT MAX(AMOUNT) AS max_amount
+FROM ORDERS
+
+---------------------------------------------------------------------
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER DATE, ID_CUSTOMER, AMOUNT);
+
+
+Obtain the smallest and the biggest amount of products ordered for orders made in 2015.
+
+SELECT MIN(AMOUNT) AS smallest_amount, MAX(AMOUNT) AS biggest_amount
+FROM ORDERS
+WHERE DATE_ORDER BETWEEN '2015-01-01' AND '2015-12-31';
+
+------------------------------------------------------------------------------
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER DATE, ID_CUSTOMER, AMOUNT);
+
+
+Calculate the average sum of purchasing in our shop.
+
+Please use function ROUND(x, 2) for rounding of  total result x up to 2 digits after the point.
+
+SELECT ROUND(AVG(PRODUCT_PRICE * AMOUNT), 2) AS average_sum
+FROM ORDERS
+-----------------------------------------------------------------------------------
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER DATE, ID_CUSTOMER, AMOUNT);
+
+
+Determine the count of customers who have made orders in our shop.
+
+SELECT COUNT(DISTINCT ID_CUSTOMER) AS customer_count
+FROM ORDERS
+
+----------------------------------------------------------------------------------------------------------
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER DATE, ID_CUSTOMER, AMOUNT);
+
+Find out the biggest product price in all orders.
+
+SELECT MAX(PRODUCT_PRICE) AS MAX_PRICE FROM ORDERS;
+-------------------------------------------------------------------------------------------------------------
+
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER DATE, ID_CUSTOMER, AMOUNT);
+
+Find out the biggest product price in all orders, also show the name of this product in first column. If we have more than one product here please select list of the products ordered by the name.
+
+
+SELECT DISTINCT PRODUCT_NAME, PRODUCT_PRICE
+FROM ORDERS
+WHERE PRODUCT_PRICE = (SELECT MAX(PRODUCT_PRICE) FROM ORDERS)
+ORDER BY PRODUCT_NAME;
+-------------------------------------------------------------------------------------------------------------
+
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER DATE, ID_CUSTOMER, AMOUNT);
+Show the names of products (in first column) ordered along with their total amount. Please sort by first column.
+
+
+SELECT PRODUCT_NAME, SUM(AMOUNT) AS TOTAL_AMOUNT
+FROM ORDERS
+GROUP BY PRODUCT_NAME
+ORDER BY PRODUCT_NAME;
+
+-------------------------------------------------------------------------------------------------------------
+
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER DATE, ID_CUSTOMER, AMOUNT);
+
+
+Calculate the average sum of the orders for the product ‘Lenovo Flex 10’.
+
+SELECT AVG(PRODUCT_PRICE * AMOUNT) AS AVG_SUM_OF_ORDERS
+FROM ORDERS
+WHERE PRODUCT_NAME = 'Lenovo Flex 10';
+
+------------------------------------------------------------------------------------------------------------
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER DATE, ID_CUSTOMER, AMOUNT);
+
+List the last and first names of the customers who have made the most expensive purchase. Please order the list by first and last names.
+
+
+SELECT c.LASTNAME, c.FIRSTNAME
+FROM CUSTOMERS c
+JOIN ORDERS o ON c.ID = o.ID_CUSTOMER
+WHERE o.PRODUCT_PRICE = (SELECT MAX(PRODUCT_PRICE) FROM ORDERS)
+ORDER BY c.FIRSTNAME, c.LASTNAME;
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER DATE, ID_CUSTOMER, AMOUNT);
+
+
+
+Get the first and last names of the customers who bought the biggest amount of a product in one order.
+The orders without customer should not be considered. Please sort by FIRSTNAME and LASTNAME
+
+
+
+
+SELECT c.FIRSTNAME, c.LASTNAME
+FROM CUSTOMERS c
+JOIN ORDERS o ON c.ID = o.ID_CUSTOMER
+WHERE o.ID_CUSTOMER IS NOT NULL
+GROUP BY o.ID_CUSTOMER
+HAVING MAX(o.AMOUNT) = (
+    SELECT MAX(o2.AMOUNT)
+    FROM ORDERS o2
+    WHERE o2.ID_CUSTOMER IS NOT NULL
+)
+ORDER BY c.FIRSTNAME, c.LASTNAME;
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER DATE, ID_CUSTOMER, AMOUNT);
+
+
+Select list of the last and first names of the customers, who haven’t made any orders. Please sort by FIRSTNAME and LASTNAME
+
+
+SELECT LASTNAME, FIRSTNAME
+FROM CUSTOMERS
+WHERE ID NOT IN (SELECT ID_CUSTOMER FROM ORDERS WHERE ID_CUSTOMER IS NOT NULL)
+ORDER BY LASTNAME, FIRSTNAME;
+____________________________________________________________________________________________________________________________________________________
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER DATE, ID_CUSTOMER, AMOUNT);
+
+Show the product names along with their total amounts ordered in more than one order. Please sort by PRODUCT_NAME
+
+
+SELECT PRODUCT_NAME, SUM(AMOUNT) AS TOTAL_AMOUNT_ORDERED
+FROM ORDERS
+GROUP BY PRODUCT_NAME
+HAVING COUNT(AMOUNT) > 1
+ORDER BY PRODUCT_NAME;
+
+___________________________________________________________________________________________________________________________________________________
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER DATE, ID_CUSTOMER, AMOUNT);
+
+
+Show last names of the customers along with the count of their orders. Please sort by LASTNAME
+
+
+
+SELECT c.LASTNAME, COUNT(o.ID) AS ORDER_COUNT
+FROM CUSTOMERS c
+LEFT JOIN ORDERS o ON c.ID = o.ID_CUSTOMER
+GROUP BY c.ID
+ORDER BY c.LASTNAME;
+_______________________________________________________________________________________________________________________________________________
+
+There are 2 tables
+  CUSTOMERS(ID, FIRSTNAME, LASTNAME, ADDRESS);
+  ORDERS (ID, PRODUCT_NAME, PRODUCT_PRICE, DATE_ORDER DATE, ID_CUSTOMER, AMOUNT);
+
+
+SELECT DISTINCT c.FIRSTNAME, c.LASTNAME
+FROM CUSTOMERS c
+JOIN ORDERS o ON c.ID = o.ID_CUSTOMER
+WHERE o.PRODUCT_PRICE * o.AMOUNT > (
+  SELECT AVG(o2.PRODUCT_PRICE * o2.AMOUNT)
+  FROM ORDERS o2
+)
+ORDER BY c.FIRSTNAME, c.LASTNAME;
+
+
+Get the first and last names of the customers who made orders in total sum greater than the average sum of all orders. Don't avoid duplication. Please sort by FIRSTNAME and LASTNAME
+
+
+
+
+
+Get the first and last names of the customers who made orders in total sum greater than the average sum of all orders. Don't avoid duplication. Please sort by FIRSTNAME and LASTNAME
+
+
+

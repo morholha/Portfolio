@@ -1,0 +1,77 @@
+SELECT ...
+FROM table_name
+ORDER BY column1, column2 ... ASC/DESC;
+----------------------------------------------------------------
+
+/* Find users with age more than 19 years and sort results by ascending */
+
+SELECT *
+FROM users
+WHERE age > 19;
+ORDER BY age ASC;
+
+/* Find movies and sort by ascending */
+
+SELECT title, year
+FROM movie
+ORDER BY year ASC;
+
+/* Find movies and sort by year descending*/
+
+SELECT title, year
+FROM movie
+ORDER BY year DESC;
+
+/* Find movies and sort by title ascending */
+
+SELECT title
+FROM movie
+ORDER BY title ASC;
+
+/* Find movies and sort by title descending */
+
+SELECT title
+FROM movie
+ORDER BY title DESC; 
+
+/* Find and sort movies from new to old from 2015 year and with ascending titles */
+
+SELECT title
+FROM movie
+WHERE year > 2015
+ORDER BY year DESC, title ASC; 
+
+/* Display all the information about students who live in Kyiv. Sort the result by the date of birth of the students - from the oldest to the youngest */
+
+SELECT *
+FROM pupil
+WHERE city = 'Kyiv'
+ORDER BY birth_date ASC;
+
+/* Display all the information about the books in the table. Sort the result by year of publication, starting with the most recent */
+
+SELECT *
+FROM book
+ORDER BY publish_year DESC;
+
+/* Display the name and price of all dishes with a price greater than 100. Sort the result by the name of the dish in alphabetical order. */
+
+SELECT price, name
+FROM dish
+WHERE price > 100
+ORDER BY name ASC;
+
+/* Display the title and year of publication of books published in 2012 or later. Sort the result by book title in descending order. */
+
+SELECT title, publish_year 
+FROM book
+WHERE publish_year >= 2012
+ORDER BY title DESC;
+ 
+/* Display the name, weight, and price of the dishes that cost between 90 and 125 inclusive. Sort the result first by price in descending order and then by weight in ascending order. */
+
+SELECT name, weight, price
+FROM dish
+WHERE price BETWEEN 90 AND 125
+ORDER BY price DESC, weight ASC;
+

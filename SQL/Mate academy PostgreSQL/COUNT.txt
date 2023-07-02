@@ -1,0 +1,79 @@
+SELECT COUNT (column_name)
+FROM table;
+-------------------------------------------------
+
+/* count movies */
+
+SELECT COUNT(*) AS number_of_movies
+FROM movie;
+
+
+/* Show movies count from USA and with budget */
+
+SELECT COUNT (*)
+FROM movie
+WHERE release_country = 'USA' AND budget IS NOT NULL;
+
+
+/* Show all movies count from USA */
+
+SELECT COUNT (*)
+FROM movie
+WHERE release_country = 'USA';
+
+
+/* Show movies count from USA and with budget */
+
+SELECT COUNT (budget)
+FROM movie
+WHERE release_country = 'USA';
+
+
+/* Find the number of students living in Kyiv. Create an alias for the resulting column - number_of_pupils. */
+
+
+/* Find the number of laid-off employees. Create an alias for the resulting column - non_working_staff. */
+
+
+SELECT COUNT(*) AS non_working_staff
+FROM staff
+WHERE date_of_dismissal IS NOT NULL;
+
+/* Find the number of books published between 2012 and 2017 inclusive. Create an alias for the resulting column - number_of_books. */
+
+SELECT COUNT(*) AS number_of_books
+FROM book
+WHERE publish_year BETWEEN 2012 AND 2017;
+
+
+/* Знайди кількість учнів, для яких відомий номер телефону батька (father_phone). Для результуючого стовпця створи псевдонім — number_of_pupils. */
+
+SELECT COUNT(*) AS number_of_pupils
+FROM pupil
+WHERE father_phone IS NOT NULL;
+
+
+/* Find the number of employees who:
+
+are still working;
+have the position of teacher;
+have a salary of 9000 or more.
+Create an alias for the resulting column - number_of_staff. */
+
+SELECT COUNT(*) AS number_of_staff
+FROM staff
+WHERE date_of_dismissal IS NULL AND position = 'teacher' AND salary >= 9000;
+
+
+/* Find the number of items whose name begins with the letter E. Create an alias for the resulting column - number_of_subjects. */
+
+SELECT COUNT(*) AS number_of_subjects
+FROM subject
+WHERE name LIKE 'E%';
+
+
+
+
+
+
+
